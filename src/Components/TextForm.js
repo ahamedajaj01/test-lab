@@ -56,6 +56,7 @@ const handleCopyClick = (e) => {
     navigator.clipboard.writeText(textArea.value)
       .then(() => {
         props.showAlert("Text copied to clipboard", "Success");
+        document.getSelection().removeAllRanges();
       })
       .catch(() => {
         props.showAlert("Clipboard permission denied", "Error");
@@ -103,20 +104,20 @@ const btnStyle = {
           ></textarea>
         </div>
         <div className='container' style={btnStyle}>
-        <button className='btn btn-primary' onClick={handleUpClick}>Convert To upper case</button>
-        <button className='btn btn-primary mx-2' onClick={handleSpeakClick}>Text To speech</button>
-        <button className='btn btn-primary mx-2' onClick={handleRevClick}>Reverse Form text</button>
-        <button className='btn btn-primary mx-2' onClick={handleDownClick}>Convert To lower case</button>
-        <button className='btn btn-primary mx-2' onClick={handleCopyClick}>Copy To Clipboard</button>
-        <button className='btn btn-danger mx-2' onClick={handleDelClick}>Delete Form text</button>
+        <button className='btn btn-primary'  disabled={text.length === 0} onClick={handleUpClick}>Convert To upper case</button>
+        <button className='btn btn-primary mx-2 my-2'  disabled={text.length === 0} onClick={handleSpeakClick}>Text To speech</button>
+        <button className='btn btn-primary mx-2 my-2'  disabled={text.length === 0} onClick={handleRevClick}>Reverse Form text</button>
+        <button className='btn btn-primary mx-2 my-2'  disabled={text.length === 0} onClick={handleDownClick}>Convert To lower case</button>
+        <button className='btn btn-primary mx-2 my-2'  disabled={text.length === 0} onClick={handleCopyClick}>Copy To Clipboard</button>
+        <button className='btn btn-danger mx-2 my-2'  disabled={text.length === 0} onClick={handleDelClick}>Delete Form text</button>
         </div>
       </form>
     </div>
     <div className='container my-3' >
         <h2>My Text Summary</h2>
-        <p style={{fontWeight:"700"}}>Total no of words {text.trim().split(/\s+/).filter(Boolean).length} and {text.length} characters</p>
+        <p style={{fontWeight:"700"}}>Total no of words {text.split(" ").filter((element)=>{return element.length !== 0}).length} and {text.length} characters</p>
         <h2>Preview</h2>
-        <p>{text}</p>
+        <p>{text.length > 0? text:"Nothing To Preview!"}</p>
     </div>
         </>
     )

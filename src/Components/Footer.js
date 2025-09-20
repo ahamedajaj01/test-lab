@@ -8,7 +8,7 @@ export default function Footer(props){
         <div className="row">
           {/* Column 1 */}
           <div className="col-lg-4 col-md-6 mb-4 mb-md-0">
-            <h5 className="text-uppercase">MyApp</h5>
+            <h5 className="text-uppercase">TextLab</h5>
             <p>
               Bringing you awesome web experiences. Built with 💙 using React and Bootstrap.
             </p>
@@ -36,7 +36,8 @@ export default function Footer(props){
 
       {/* Copyright */}
       <div className="text-center p-3 bg-secondary" style={{color:"black", fontWeight:"500"}}>
-        © {new Date().getFullYear()} MyApp | All rights reserved.
+        &copy;
+ {new Date().getFullYear()} TextLab | All rights reserved.
       </div>
     </footer>
         </>
